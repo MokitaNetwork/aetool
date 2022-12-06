@@ -6,7 +6,7 @@ require (
 	github.com/Jeffail/gabs/v2 v2.6.0
 	github.com/cosmos/cosmos-sdk v0.39.2
 	github.com/kr/text v0.2.0 // indirect
-	github.com/mokitanetwork/aether v0.12.0
+	github.com/mokitanetwork/aether v0
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/onsi/ginkgo v1.12.0 // indirect
 	github.com/onsi/gomega v1.9.0 // indirect
