@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/cosmos/cosmos-sdk v0.45.9
-	github.com/MokitaNetwork/aether v0.12.0
+	github.com/mokitanetwork/aether v0.12.0
 	github.com/spf13/cobra v1.5.0
 	github.com/tendermint/tendermint v0.34.21
 )
@@ -76,7 +76,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jackpal/go-nat-pmp v1.0.2 // indirect
 	github.com/jmhodges/levigo v1.0.0 // indirect
-	github.com/MokitaNetwork/aether-bridge v0.2.0 // indirect
+	github.com/mokitanetwork/kava-bridge v0.2.0 // indirect
 	github.com/keybase/go-keychain v0.0.0-20190712205309-48d3d31d256d // indirect
 	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/libp2p/go-buffer-pool v0.1.0 // indirect
