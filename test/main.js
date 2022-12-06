@@ -9,10 +9,10 @@ var main = async () => {
         LOADED_AETH_MNEMONIC, LOADED_BINANCE_CHAIN_MNEMONIC);
 
     // Load each Kava deputy hot wallet
-    await loadKavaDeputies(clients.kavaClient, BEP3_ASSETS, 100000);
+    await loadKavaDeputies(clients.aethClient, BEP3_ASSETS, 100000);
 
-    await incomingSwap(clients.kavaClient, clients.bnbClient, BEP3_ASSETS, "busd", 10200005);
-    // await outgoingSwap(clients.kavaClient, clients.bnbClient, BEP3_ASSETS, "busd", 500005);
+    await incomingSwap(clients.aethClient, clients.bnbClient, BEP3_ASSETS, "busd", 10200005);
+    // await outgoingSwap(clients.aethClient, clients.bnbClient, BEP3_ASSETS, "busd", 500005);
 };
 
 main();

@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	kavaServiceName    = "kava"
+	aethServiceName    = "aeth"
 	binanceServiceName = "binance"
 	deputyServiceName  = "deputy"
 )
@@ -25,10 +25,10 @@ const (
 var (
 	defaultGeneratedConfigDir string = filepath.Join(generate.ConfigTemplatesDir, "../..", "full_configs", "generated")
 
-	supportedServices = []string{kavaServiceName, binanceServiceName, deputyServiceName}
+	supportedServices = []string{aethServiceName, binanceServiceName, deputyServiceName}
 )
 
-// TestnetCmd cli command for starting kava testnets with docker
+// TestnetCmd cli command for starting aeth testnets with docker
 func TestnetCmd() *cobra.Command {
 
 	var generatedConfigDir string
@@ -36,13 +36,13 @@ func TestnetCmd() *cobra.Command {
 	rootCmd := &cobra.Command{
 		Use:     "testnet",
 		Aliases: []string{"t"},
-		Short:   "Start a default kava and binance local testnet with a deputy. Stop with Ctrl-C and remove with 'testnet down'. Use sub commands for more options.",
-		Long: fmt.Sprintf(`This command helps run local kava testnets composed of various independent processes.
+		Short:   "Start a default aeth and binance local testnet with a deputy. Stop with Ctrl-C and remove with 'testnet down'. Use sub commands for more options.",
+		Long: fmt.Sprintf(`This command helps run local aeth testnets composed of various independent processes.
 
 Processes are run via docker-compose. This command generates a docker-compose.yaml and other necessary config files that are synchronized with each so the services all work together.
 
 By default this command will generate configuration for a kvd node and rest server, a binance node and rest server, and a deputy. And then 'run docker-compose up'.
-This is the equivalent of running 'testnet gen-config kava binance deputy' then 'testnet up'.
+This is the equivalent of running 'testnet gen-config aeth binance deputy' then 'testnet up'.
 
 Docker compose files are (by default) written to %s`, defaultGeneratedConfigDir),
 		Args: cobra.NoArgs,
@@ -69,7 +69,7 @@ Docker compose files are (by default) written to %s`, defaultGeneratedConfigDir)
 	}
 	rootCmd.PersistentFlags().StringVar(&generatedConfigDir, "generated-dir", defaultGeneratedConfigDir, "output directory for the generated config")
 
-	var kavaConfigTemplate string
+	var aethConfigTemplate string
 	var ibcFlag bool
 	var gethFlag bool
 
@@ -80,7 +80,7 @@ Docker compose files are (by default) written to %s`, defaultGeneratedConfigDir)
 
 available services: %s
 `, supportedServices),
-		Example:   "gen-config kava binance deputy --kava.configTemplate v0.10",
+		Example:   "gen-config aeth binance deputy --aeth.configTemplate v0.10",
 		ValidArgs: supportedServices,
 		Args:      Minimum1ValidArgs,
 		RunE: func(_ *cobra.Command, args []string) error {
@@ -91,8 +91,8 @@ available services: %s
 			}
 
 			// 2) generate a complete docker-compose config
-			if stringSlice(args).contains(kavaServiceName) {
-				if err := generate.GenerateKavaConfig(kavaConfigTemplate, generatedConfigDir); err != nil {
+			if stringSlice(args).contains(aethServiceName) {
+				if err := generate.GenerateKavaConfig(aethConfigTemplate, generatedConfigDir); err != nil {
 					return err
 				}
 			}
@@ -120,7 +120,7 @@ available services: %s
 			return nil
 		},
 	}
-	genConfigCmd.Flags().StringVar(&kavaConfigTemplate, "kava.configTemplate", "master", "the directory name of the template used to generating the kava config")
+	genConfigCmd.Flags().StringVar(&aethConfigTemplate, "aeth.configTemplate", "master", "the directory name of the template used to generating the aeth config")
 	genConfigCmd.Flags().BoolVar(&ibcFlag, "ibc", false, "flag for if ibc is enabled")
 	genConfigCmd.Flags().BoolVar(&gethFlag, "geth", false, "flag for if geth node is enabled")
 	rootCmd.AddCommand(genConfigCmd)
@@ -163,8 +163,8 @@ available services: %s
 
 	bootstrapCmd := &cobra.Command{
 		Use:     "bootstrap",
-		Short:   "A convenience command that creates a kava testnet with the input configTemplate (defaults to master)",
-		Example: "bootstrap --kava.configTemplate v0.12",
+		Short:   "A convenience command that creates a aeth testnet with the input configTemplate (defaults to master)",
+		Example: "bootstrap --aeth.configTemplate v0.12",
 		Args:    cobra.NoArgs,
 		RunE: func(_ *cobra.Command, _ []string) error {
 			cmd := exec.Command("docker-compose", "--file", filepath.Join(generatedConfigDir, "docker-compose.yaml"), "down")
@@ -179,7 +179,7 @@ available services: %s
 			if err := os.RemoveAll(generatedConfigDir); err != nil {
 				return fmt.Errorf("could not clear old generated config: %v", err)
 			}
-			if err := generate.GenerateKavaConfig(kavaConfigTemplate, generatedConfigDir); err != nil {
+			if err := generate.GenerateKavaConfig(aethConfigTemplate, generatedConfigDir); err != nil {
 				return err
 			}
 			if ibcFlag {
@@ -215,25 +215,25 @@ available services: %s
 			if ibcFlag {
 				fmt.Printf("Starting ibc connection between chains...\n")
 				time.Sleep(time.Second * 7)
-				restoreKeys1Cmd := exec.Command("docker", "run", "-v", fmt.Sprintf("%s:%s", filepath.Join(generatedConfigDir, "hermes"), "/home/hermes/.hermes"), "kava/hermes:latest", "keys", "restore", "kavalocalnet_8888-1", "-n", "testkey", "-m", "very health column only surface project output absent outdoor siren reject era legend legal twelve setup roast lion rare tunnel devote style random food", "--hd-path", "m/44'/459'/0'/0/0")
+				restoreKeys1Cmd := exec.Command("docker", "run", "-v", fmt.Sprintf("%s:%s", filepath.Join(generatedConfigDir, "hermes"), "/home/hermes/.hermes"), "aeth/hermes:latest", "keys", "restore", "aethlocalnet_8888-1", "-n", "testkey", "-m", "very health column only surface project output absent outdoor siren reject era legend legal twelve setup roast lion rare tunnel devote style random food", "--hd-path", "m/44'/459'/0'/0/0")
 				restoreKeys1Cmd.Stdout = os.Stdout
 				restoreKeys1Cmd.Stderr = os.Stderr
 				if err := restoreKeys1Cmd.Run(); err != nil {
 					fmt.Println(err.Error())
 				}
-				restoreKeys2Cmd := exec.Command("docker", "run", "-v", fmt.Sprintf("%s:%s", filepath.Join(generatedConfigDir, "hermes"), "/home/hermes/.hermes"), "kava/hermes:latest", "keys", "restore", "kava-localnet-2", "-n", "testkey", "-m", "very health column only surface project output absent outdoor siren reject era legend legal twelve setup roast lion rare tunnel devote style random food", "--hd-path", "m/44'/459'/0'/0/0")
+				restoreKeys2Cmd := exec.Command("docker", "run", "-v", fmt.Sprintf("%s:%s", filepath.Join(generatedConfigDir, "hermes"), "/home/hermes/.hermes"), "aeth/hermes:latest", "keys", "restore", "aeth-localnet-2", "-n", "testkey", "-m", "very health column only surface project output absent outdoor siren reject era legend legal twelve setup roast lion rare tunnel devote style random food", "--hd-path", "m/44'/459'/0'/0/0")
 				restoreKeys2Cmd.Stdout = os.Stdout
 				restoreKeys2Cmd.Stderr = os.Stderr
 				if err := restoreKeys2Cmd.Run(); err != nil {
 					fmt.Println(err.Error())
 				}
-				generatePathCmd := exec.Command("docker", "run", "-v", fmt.Sprintf("%s:%s", filepath.Join(generatedConfigDir, "relayer"), "/relayer/.relayer"), "--network", "generated_default", "kava/relayer:v1.0.0", "paths", "generate", "kava-localnet-2", "kavalocalnet_8888-1", "transfer", "--port", "transfer")
+				generatePathCmd := exec.Command("docker", "run", "-v", fmt.Sprintf("%s:%s", filepath.Join(generatedConfigDir, "relayer"), "/relayer/.relayer"), "--network", "generated_default", "aeth/relayer:v1.0.0", "paths", "generate", "aeth-localnet-2", "aethlocalnet_8888-1", "transfer", "--port", "transfer")
 				generatePathCmd.Stdout = os.Stdout
 				generatePathCmd.Stderr = os.Stderr
 				if err := generatePathCmd.Run(); err != nil {
 					fmt.Println(err.Error())
 				}
-				openConnectionCmd := exec.Command("docker", "run", "-v", fmt.Sprintf("%s:%s", filepath.Join(generatedConfigDir, "relayer"), "/relayer/.relayer"), "--network", "generated_default", "kava/relayer:v1.0.0", "tx", "link", "transfer", "-d", "-o", "3s")
+				openConnectionCmd := exec.Command("docker", "run", "-v", fmt.Sprintf("%s:%s", filepath.Join(generatedConfigDir, "relayer"), "/relayer/.relayer"), "--network", "generated_default", "aeth/relayer:v1.0.0", "tx", "link", "transfer", "-d", "-o", "3s")
 				openConnectionCmd.Stdout = os.Stdout
 				openConnectionCmd.Stderr = os.Stderr
 				if err := openConnectionCmd.Run(); err != nil {
@@ -265,14 +265,14 @@ available services: %s
 			return nil
 		},
 	}
-	bootstrapCmd.Flags().StringVar(&kavaConfigTemplate, "kava.configTemplate", "master", "the directory name of the template used to generating the kava config")
+	bootstrapCmd.Flags().StringVar(&aethConfigTemplate, "aeth.configTemplate", "master", "the directory name of the template used to generating the aeth config")
 	bootstrapCmd.Flags().BoolVar(&ibcFlag, "ibc", false, "flag for if ibc is enabled")
 	bootstrapCmd.Flags().BoolVar(&gethFlag, "geth", false, "flag for if geth is enabled")
 	rootCmd.AddCommand(bootstrapCmd)
 
 	exportCmd := &cobra.Command{
 		Use:     "export",
-		Short:   "Pauses the current kava testnet, exports the current kava testnet state to a JSON file, then restarts the testnet.",
+		Short:   "Pauses the current aeth testnet, exports the current aeth testnet state to a JSON file, then restarts the testnet.",
 		Example: "export",
 		Args:    cobra.NoArgs,
 		RunE: func(_ *cobra.Command, _ []string) error {
@@ -285,8 +285,8 @@ available services: %s
 				return err
 			}
 			// docker ps -aqf "name=containername"
-			kavaContainerIDCmd := exec.Command("docker", "ps", "-aqf", "name=generated_kavanode_1")
-			kavaContainer, err := kavaContainerIDCmd.Output()
+			aethContainerIDCmd := exec.Command("docker", "ps", "-aqf", "name=generated_aethnode_1")
+			aethContainer, err := aethContainerIDCmd.Output()
 			if err != nil {
 				return err
 			}
@@ -297,9 +297,9 @@ available services: %s
 				return err
 			}
 
-			makeNewKavaImageCmd := exec.Command("docker", "commit", strings.TrimSpace(string(kavaContainer)), "kava-export-temp")
+			makeNewKavaImageCmd := exec.Command("docker", "commit", strings.TrimSpace(string(aethContainer)), "aeth-export-temp")
 
-			kavaImageOutput, err := makeNewKavaImageCmd.Output()
+			aethImageOutput, err := makeNewKavaImageCmd.Output()
 			if err != nil {
 				return err
 			}
@@ -310,35 +310,35 @@ available services: %s
 				return err
 			}
 
-			localKavaMountPath := filepath.Join(generatedConfigDir, "kava", "initstate", ".kava", "config")
-			localIbcMountPath := filepath.Join(generatedConfigDir, "ibcchain", "initstate", ".kava", "config")
+			localKavaMountPath := filepath.Join(generatedConfigDir, "aeth", "initstate", ".aeth", "config")
+			localIbcMountPath := filepath.Join(generatedConfigDir, "ibcchain", "initstate", ".aeth", "config")
 
-			kavaExportCmd := exec.Command(
+			aethExportCmd := exec.Command(
 				"docker", "run",
-				"-v", strings.TrimSpace(fmt.Sprintf("%s:/root/.kava/config", localKavaMountPath)),
-				"kava-export-temp",
-				"kava", "export")
-			kavaExportJSON, err := kavaExportCmd.Output()
+				"-v", strings.TrimSpace(fmt.Sprintf("%s:/root/.aeth/config", localKavaMountPath)),
+				"aeth-export-temp",
+				"aeth", "export")
+			aethExportJSON, err := aethExportCmd.Output()
 			if err != nil {
 				return err
 			}
 
 			ibcExportCmd := exec.Command(
 				"docker", "run",
-				"-v", strings.TrimSpace(fmt.Sprintf("%s:/root/.kava/config", localIbcMountPath)),
+				"-v", strings.TrimSpace(fmt.Sprintf("%s:/root/.aeth/config", localIbcMountPath)),
 				"ibc-export-temp",
-				"kava", "export")
+				"aeth", "export")
 			ibcExportJSON, err := ibcExportCmd.Output()
 			if err != nil {
 				return err
 			}
 			ts := time.Now().Unix()
-			kavaFilename := fmt.Sprintf("kava-export-%d.json", ts)
+			aethFilename := fmt.Sprintf("aeth-export-%d.json", ts)
 			ibcFilename := fmt.Sprintf("ibc-export-%d.json", ts)
 
-			fmt.Printf("Created exports %s and %s\nCleaning up...", kavaFilename, ibcFilename)
+			fmt.Printf("Created exports %s and %s\nCleaning up...", aethFilename, ibcFilename)
 
-			err = ioutil.WriteFile(kavaFilename, kavaExportJSON, 0644)
+			err = ioutil.WriteFile(aethFilename, aethExportJSON, 0644)
 			if err != nil {
 				return err
 			}
@@ -348,7 +348,7 @@ available services: %s
 			}
 
 			// docker ps -aqf "name=containername"
-			tempKavaContainerIDCmd := exec.Command("docker", "ps", "-aqf", "ancestor=kava-export-temp")
+			tempKavaContainerIDCmd := exec.Command("docker", "ps", "-aqf", "ancestor=aeth-export-temp")
 			tempKavaContainer, err := tempKavaContainerIDCmd.Output()
 			if err != nil {
 				return err
@@ -370,7 +370,7 @@ available services: %s
 				return err
 			}
 
-			deleteKavaImageCmd := exec.Command("docker", "rmi", strings.TrimSpace(string(kavaImageOutput)))
+			deleteKavaImageCmd := exec.Command("docker", "rmi", strings.TrimSpace(string(aethImageOutput)))
 			err = deleteKavaImageCmd.Run()
 			if err != nil {
 				return err

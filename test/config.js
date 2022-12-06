@@ -9,30 +9,30 @@ const LOADED_BINANCE_CHAIN_MNEMONIC = "village fiscal december liquid better dri
 // BEP3 assets
 const BEP3_ASSETS = {
   "bnb": {
-    kavaDenom: "bnb",
+    aethDenom: "bnb",
     binanceChainDenom: "BNB",
-    kavaDeputyHotWallet: "kava1agcvt07tcw0tglu0hmwdecsnuxp2yd45f3avgm",
+    aethDeputyHotWallet: "aeth1agcvt07tcw0tglu0hmwdecsnuxp2yd45f3avgm",
     binanceChainDeputyHotWallet: "bnb1zfa5vmsme2v3ttvqecfleeh2xtz5zghh49hfqe",
     conversionFactor: 10 ** 8
   },
   "btcb": {
-    kavaDenom: "btcb",
+    aethDenom: "btcb",
     binanceChainDenom: "BTCB-1DE",
-    kavaDeputyHotWallet: "kava1kla4wl0ccv7u85cemvs3y987hqk0afcv7vue84",
+    aethDeputyHotWallet: "aeth1kla4wl0ccv7u85cemvs3y987hqk0afcv7vue84",
     binanceChainDeputyHotWallet: "bnb1z8ryd66lhc4d9c0mmxx9zyyq4t3cqht9mt0qz3",
     conversionFactor: 10 ** 8
   },
   "xrpb": {
-    kavaDenom: "xrpb",
+    aethDenom: "xrpb",
     binanceChainDenom: "XRP-BF2",
-    kavaDeputyHotWallet: "kava14q5sawxdxtpap5x5sgzj7v4sp3ucncjlpuk3hs",
+    aethDeputyHotWallet: "aeth14q5sawxdxtpap5x5sgzj7v4sp3ucncjlpuk3hs",
     binanceChainDeputyHotWallet: "bnb1ryrenacljwghhc5zlnxs3pd86amta3jcaagyt0",
     conversionFactor: 10 ** 8
   },
   "busd": {
-    kavaDenom: "busd",
+    aethDenom: "busd",
     binanceChainDenom: "BUSD-BD1",
-    kavaDeputyHotWallet: "kava1j9je7f6s0v6k7dmgv6u5k5ru202f5ffsc7af04",
+    aethDeputyHotWallet: "aeth1j9je7f6s0v6k7dmgv6u5k5ru202f5ffsc7af04",
     binanceChainDeputyHotWallet: "bnb1j20j0e62n2l9sefxnu596a6jyn5x29lk2syd5j",
     conversionFactor: 10 ** 8
   },

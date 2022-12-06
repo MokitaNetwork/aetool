@@ -25,7 +25,7 @@ Create go packages and/or cli tools only to generate a set of config files for d
 	- example:
 	```
 		generated_config/
-		|- kava/
+		|- aeth/
 			|- .kvd/
 				|- config.toml
 				|- genesis.json
@@ -51,7 +51,7 @@ Create go packages and/or cli tools only to generate a set of config files for d
 ### Disadvantages
 
 - requires working knowledge of docker / docker-compose
-- services need to be packaged into docker containers (although for the web app, it could run outside docker while interacting with kava/bnb rest servers running in docker)
+- services need to be packaged into docker containers (although for the web app, it could run outside docker while interacting with aeth/bnb rest servers running in docker)
 - there might be need to send in txs after a testnet launches to create CDPs, auctions, etc. There is not obvious place for this type of configuration to live in this framework
 
 ### Generating Config

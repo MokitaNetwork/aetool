@@ -2,12 +2,12 @@ const Kava = require('@kava-labs/javascript-sdk');
 const BnbApiClient = require('@binance-chain/javascript-sdk');
 const { sleep } = require("./helpers.js");
 
-const setup = async (kavaEndpoint, binanceEndpoint, kavaMnemonic, binanceMnemonic) => {
+const setup = async (aethEndpoint, binanceEndpoint, aethMnemonic, binanceMnemonic) => {
     // Start new Kava client
-    kavaClient = new Kava.KavaClient(kavaEndpoint);
-    kavaClient.setWallet(kavaMnemonic);
-    kavaClient.setBroadcastMode("async");
-    await kavaClient.initChain();
+    aethClient = new Kava.KavaClient(aethEndpoint);
+    aethClient.setWallet(aethMnemonic);
+    aethClient.setBroadcastMode("async");
+    await aethClient.initChain();
 
     // Start Binance Chain client
     const bnbClient = await new BnbApiClient.BncClient(binanceEndpoint);
@@ -42,16 +42,16 @@ const setup = async (kavaEndpoint, binanceEndpoint, kavaMnemonic, binanceMnemoni
       return result
     })
 
-    return { kavaClient: kavaClient, bnbClient: bnbClient };
+    return { aethClient: aethClient, bnbClient: bnbClient };
 }
 
-const loadKavaDeputies = async (kavaClient, assets, amount) => {
+const loadKavaDeputies = async (aethClient, assets, amount) => {
     var counter = 0;
     for (var denom in assets) {
         const assetInfo = assets[denom];
-        const coins = Kava.utils.formatCoins(amount * assetInfo.conversionFactor, assetInfo.kavaDenom);
-        const txHash = await kavaClient.transfer(assetInfo.kavaDeputyHotWallet, coins);
-        console.log("Load", assetInfo.kavaDenom, "deputy:", txHash);
+        const coins = Kava.utils.formatCoins(amount * assetInfo.conversionFactor, assetInfo.aethDenom);
+        const txHash = await aethClient.transfer(assetInfo.aethDeputyHotWallet, coins);
+        console.log("Load", assetInfo.aethDenom, "deputy:", txHash);
 
         counter++;
         counter < Object.keys(assets).length ? await sleep(7000) : await sleep(3000);

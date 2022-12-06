@@ -1,9 +1,9 @@
 version: '3'
 services:
-  kava-1:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+  aeth-1:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     ports:
-      # open default kava rpc port
+      # open default aeth rpc port
       - "26657:26657"
       # open rest port
       - "1317:1317"
@@ -16,90 +16,90 @@ services:
       # open Eth websocket port
       - "8546:8546"
     volumes:
-      - "./kava-1:/root/.kava"
+      - "./aeth-1:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-2:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-2:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-2:/root/.kava"
+      - "./aeth-2:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-3:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-3:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-3:/root/.kava"
+      - "./aeth-3:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-4:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-4:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-4:/root/.kava"
+      - "./aeth-4:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-5:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-5:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-5:/root/.kava"
+      - "./aeth-5:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-6:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-6:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-6:/root/.kava"
+      - "./aeth-6:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-7:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-7:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-7:/root/.kava"
+      - "./aeth-7:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-8:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-8:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-8:/root/.kava"
+      - "./aeth-8:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-9:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-9:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-9:/root/.kava"
+      - "./aeth-9:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
-  kava-10:
-    image: "kava/kava:${AETH_IMAGE_TAG:-master}"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"
+  aeth-10:
+    image: "aeth/aeth:${AETH_IMAGE_TAG:-master}"
     volumes:
-      - "./kava-10:/root/.kava"
+      - "./aeth-10:/root/.aeth"
     # start the blockchain, and set rpc to listen to connections from outside the container
     command:
       - "sh"
       - "-c"
-      - "/root/.kava/config/init-data-directory.sh && kava start --rpc.laddr=tcp://0.0.0.0:26657"
+      - "/root/.aeth/config/init-data-directory.sh && aeth start --rpc.laddr=tcp://0.0.0.0:26657"

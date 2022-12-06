@@ -2,7 +2,7 @@
 
 for i in {1..10}
 do
-  home=kava-$i
+  home=aeth-$i
 
   rm -rf $home/data
 done

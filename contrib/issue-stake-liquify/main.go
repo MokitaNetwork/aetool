@@ -17,10 +17,10 @@ import (
 	"github.com/kava-labs/go-tools/grpc"
 	"github.com/kava-labs/go-tools/signing"
 
-	"github.com/kava-labs/kava/app"
-	earntypes "github.com/kava-labs/kava/x/earn/types"
-	issuancetypes "github.com/kava-labs/kava/x/issuance/types"
-	liquidtypes "github.com/kava-labs/kava/x/liquid/types"
+	"github.com/MokitaNetwork/aether/app"
+	earntypes "github.com/MokitaNetwork/aether/x/earn/types"
+	issuancetypes "github.com/MokitaNetwork/aether/x/issuance/types"
+	liquidtypes "github.com/MokitaNetwork/aether/x/liquid/types"
 )
 
 const (
@@ -50,9 +50,9 @@ func main() {
 
 // ProcessDelegationAllocations performs the following actions:
 // - fund each delegator account with the required amount of Kava (via dev-wallet issuing)
-// - stake the kava by designated weights to validators
-// - mint the bkava derivative token for all delegations
-// - deposit the liquid bonded kava into the earn module
+// - stake the aeth by designated weights to validators
+// - mint the baeth derivative token for all delegations
+// - deposit the liquid bonded aeth into the earn module
 func ProcessDelegationAllocations(cfg config.Config, allocations config.Allocations) error {
 	// create factory for generating account signers
 	makeSigner := SignerFactory(cfg.ChainID, cfg.KavaGrpcEndpoint)
@@ -113,14 +113,14 @@ func ProcessDelegationAllocations(cfg config.Config, allocations config.Allocati
 		}
 	}()
 
-	// issue kava to all accounts. response will manage further txs from funded account.
+	// issue aeth to all accounts. response will manage further txs from funded account.
 	msgs := make([]sdk.Msg, 0, devWalletBatchSize)
 	idxs := make([]int, 0, devWalletBatchSize)
 	for idx := 0; idx < numAccounts; idx++ {
 		total := sdk.NewIntFromBigInt(totalByIdx[idx].BigInt()).AddRaw(gasPrice)
 		issueTokensMsg := issuancetypes.NewMsgIssueTokens(
 			devWalletSigner.Address().String(),
-			sdk.NewCoin("ukava", total),
+			sdk.NewCoin("uaeth", total),
 			signerByIdx[idx].Address().String(),
 		)
 		msgs = append(msgs, issueTokensMsg)
@@ -133,7 +133,7 @@ func ProcessDelegationAllocations(cfg config.Config, allocations config.Allocati
 			devWalletRequests <- signing.MsgRequest{
 				Msgs:      msgs,
 				GasLimit:  2000000,
-				FeeAmount: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(gasPrice))),
+				FeeAmount: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(gasPrice))),
 				Memo:      "happy delegating!",
 				Data:      idxs,
 			}
@@ -274,7 +274,7 @@ func DelegateBySpamParams(
 	// watch and report on responses
 	go ReportOnResults(
 		accWg, accResponses,
-		fmt.Sprintf("spam delegation of %s ukava from account %d", amount.String(), addressIdx),
+		fmt.Sprintf("spam delegation of %s uaeth from account %d", amount.String(), addressIdx),
 	)
 
 	accWg.Add(1)
@@ -300,20 +300,20 @@ func BuildDelegationRequest(
 	stakingDelegation := stakingtypes.NewMsgDelegate(
 		signerAddress,
 		validatorAddress,
-		sdk.NewCoin("ukava", amount),
+		sdk.NewCoin("uaeth", amount),
 	)
 	msgs = append(msgs, stakingDelegation)
 	if !cfg.SkipLiquify {
 		liquidMinting := liquidtypes.NewMsgMintDerivative(
 			signerAddress,
 			validatorAddress,
-			sdk.NewCoin("ukava", amount),
+			sdk.NewCoin("uaeth", amount),
 		)
 		msgs = append(msgs, &liquidMinting)
 		earnDeposit := earntypes.NewMsgDeposit(
 			signerAddress.String(),
 			sdk.NewCoin(
-				liquidtypes.GetLiquidStakingTokenDenom("bkava", validatorAddress),
+				liquidtypes.GetLiquidStakingTokenDenom("baeth", validatorAddress),
 				amount,
 			),
 			earntypes.STRATEGY_TYPE_SAVINGS,
@@ -324,8 +324,8 @@ func BuildDelegationRequest(
 	return signing.MsgRequest{
 		Msgs:      msgs,
 		GasLimit:  uint64(cfg.DelegationGas),
-		FeeAmount: sdk.NewCoins(sdk.NewCoin("ukava", sdk.NewInt(gasPrice))),
-		Memo:      "staking my kava!",
+		FeeAmount: sdk.NewCoins(sdk.NewCoin("uaeth", sdk.NewInt(gasPrice))),
+		Memo:      "staking my aeth!",
 		Data: Data{
 			Address:    validatorAddress.String(),
 			AddressIdx: addressIdx,

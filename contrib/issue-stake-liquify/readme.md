@@ -1,12 +1,12 @@
 # `issue-stake-liquify`
 
-This script is used to delegate kava across a set of validators on a testnet.
+This script is used to delegate aeth across a set of validators on a testnet.
 
 From the configuration input (see below) it will:
-* issue kava from the dev wallet to each delegator
-* delegate the kava across the validators by a designated distribution
-* turn the staked kava into liquid bkava for each validator
-* deposit the bkava denoms into earn
+* issue aeth from the dev wallet to each delegator
+* delegate the aeth across the validators by a designated distribution
+* turn the staked aeth into liquid baeth for each validator
+* deposit the baeth denoms into earn
 
 ## Initial Setup
 
@@ -31,15 +31,15 @@ A minimal working example input looks like the following:
 ```json
 {
   "validators": [
-    { "operator_address": "kavavaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
-    { "operator_address": "kavavaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
+    { "operator_address": "aethvaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
+    { "operator_address": "aethvaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
   ]
 }
 ```
 
 By default, this will delegate an equal amount of Kava to each validator from one delegator account.
 
-`validators` - a required list of validators to delegate to. The only key necessary is the `operator_address`, the `kavavaloper-` address of the validator.
+`validators` - a required list of validators to delegate to. The only key necessary is the `operator_address`, the `aethvaloper-` address of the validator.
 
 Other fields are ignored which means it works to pass in a validator list from the API:
 ```bash
@@ -59,8 +59,8 @@ When not defined, it defaults to the following:
 ```json
 {
   "validators": [
-    { "operator_address": "kavavaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
-    { "operator_address": "kavavaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
+    { "operator_address": "aethvaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
+    { "operator_address": "aethvaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
   ],
   // each item in `delegations` is an account that will delegate to above validators
   // if empty or undefined, defaults to 1 account with equal distribution
@@ -76,7 +76,7 @@ When not defined, it defaults to the following:
 ```
 
 `distribution` - the delegation distribution strategy. either `"equal"` or `"custom"` (see below).
-`base_amount` - the amount in ukava of each delegation
+`base_amount` - the amount in uaeth of each delegation
 
 When no `delegations` object is defined, it will use an `"equal"` distribution with a `base_amount` set to the `DEFAULT_BASE_AMOUNT` environment variable (which falls back to 1,000 AETH if undefined).
 
@@ -87,7 +87,7 @@ Delegate an equal amount of AETH to all validators with a custom amount by defin
 
 Here, we delegate 1M AETH to all validators running on testnet:
 ```bash
-curl -s https://api.testnet.kava.io/cosmos/staking/v1beta1/validators |
+curl -s https://api.testnet.aeth.io/cosmos/staking/v1beta1/validators |
   jq '{
     validators: .validators,
     delegations: [{ distribution: "equal", base_amount: "1_000_000_000_000" }]
@@ -103,8 +103,8 @@ Each item in `delegations` defines how a different delegator accounts will deleg
 ```json
 {
   "validators": [
-    { "operator_address": "kavavaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
-    { "operator_address": "kavavaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
+    { "operator_address": "aethvaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
+    { "operator_address": "aethvaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
   ],
   "delegations": [
     { "distribution": "equal", "base_amount": "1_000_000_000_000"},
@@ -126,8 +126,8 @@ The configuration input allows for arbitrarily weighted distributions when `dist
 ```json
 {
   "validators": [
-    { "operator_address": "kavavaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
-    { "operator_address": "kavavaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
+    { "operator_address": "aethvaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
+    { "operator_address": "aethvaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
   ],
   "delegations": [
     {
@@ -140,14 +140,14 @@ The configuration input allows for arbitrarily weighted distributions when `dist
 }
 ```
 
-The above delegates 1M KAVA:
-* 900k KAVA to Validator 0
-* 100k KAVA to Validator 1
+The above delegates 1M AETH:
+* 900k AETH to Validator 0
+* 100k AETH to Validator 1
 
 **example: Custom delegation, only top `n` validators**
 The configuration input will ignore any missing or extra `weights` provided to `"custom"` distributions. This means that you can delegate only a top `n` validators of a set, even if that many validators are not provided:
 ```bash
-curl -s https://api.testnet.kava.io/cosmos/staking/v1beta1/validators |
+curl -s https://api.testnet.aeth.io/cosmos/staking/v1beta1/validators |
   jq '{
     validators: .validators,
     delegations: [{
@@ -157,7 +157,7 @@ curl -s https://api.testnet.kava.io/cosmos/staking/v1beta1/validators |
     }]}' | go run main.go
 ```
 
-The above makes a delegation of 3M KAVA; 1M to each of the first THREE validators (assuming they exist), and no delegation to any others.
+The above makes a delegation of 3M AETH; 1M to each of the first THREE validators (assuming they exist), and no delegation to any others.
 
 ### Arbitrary Complexity!
 
@@ -165,8 +165,8 @@ Mix and match to you heart's content:
 ```json
 {
   "validators": [
-    { "operator_address": "kavavaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
-    { "operator_address": "kavavaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
+    { "operator_address": "aethvaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
+    { "operator_address": "aethvaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
   ],
   "delegations": [
     { "distribution": "equal", "base_amount": "1_000_000_000" },
@@ -180,8 +180,8 @@ Mix and match to you heart's content:
 ```
 
 The above creates the following delegations:
-* Account 0 delegates 2,000 KAVA total; 1,000 KAVA to each validator
-* Account 1 delegates 1M KAVA total; 800k to validator 0 and 200k to validator 1
+* Account 0 delegates 2,000 AETH total; 1,000 AETH to each validator
+* Account 1 delegates 1M AETH total; 800k to validator 0 and 200k to validator 1
 
 ### Spam Delegations
 
@@ -189,8 +189,8 @@ If you don't need an explicit delegation distribution and just want a bunch of s
 ```json
 {
   "validators": [
-    { "operator_address": "kavavaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
-    { "operator_address": "kavavaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
+    { "operator_address": "aethvaloper1xcgtffvv2yeqmgs3yz4gv29kgjrj8usxrnrlwp" },
+    { "operator_address": "aethvaloper1w66m9hdzwgd6uc8g93zqkcumgwzrpcw958sh3s" }
   ],
   "spam_delegations": {
     "count": 100,
@@ -200,11 +200,11 @@ If you don't need an explicit delegation distribution and just want a bunch of s
 }
 ```
 
-The above creates 100 delegations from 100 different accounts. The delegations will be of random amounts between 100 KAVA and 1M KAVA. Each account's delegation cycles through the validators, so in the above, 50 delegations will be to validator 0 and 50 will be to validator 1.
+The above creates 100 delegations from 100 different accounts. The delegations will be of random amounts between 100 AETH and 1M AETH. Each account's delegation cycles through the validators, so in the above, 50 delegations will be to validator 0 and 50 will be to validator 1.
 
-**example: spam all validators with 10,000 delegations between 100 & 1M KAVA**
+**example: spam all validators with 10,000 delegations between 100 & 1M AETH**
 ```bash
-curl -s https://api.testnet.kava.io/cosmos/staking/v1beta1/validators |
+curl -s https://api.testnet.aeth.io/cosmos/staking/v1beta1/validators |
   jq '{
     validators: .validators,
     spam_delegations: [{

@@ -25,16 +25,16 @@ func GenerateDefaultConfig(generatedConfigDir string) error {
 	return nil
 }
 
-func GenerateKavaConfig(kavaConfigTemplate, generatedConfigDir string) error {
+func GenerateKavaConfig(aethConfigTemplate, generatedConfigDir string) error {
 	// copy templates into generated config folder
-	err := copy.Copy(filepath.Join(ConfigTemplatesDir, "kava", kavaConfigTemplate), filepath.Join(generatedConfigDir, "kava"))
+	err := copy.Copy(filepath.Join(ConfigTemplatesDir, "aeth", aethConfigTemplate), filepath.Join(generatedConfigDir, "aeth"))
 	if err != nil {
 		return err
 	}
 
 	// put together final compose file
 	err = overwriteMergeYAML(
-		filepath.Join(ConfigTemplatesDir, "kava", kavaConfigTemplate, "docker-compose.yaml"),
+		filepath.Join(ConfigTemplatesDir, "aeth", aethConfigTemplate, "docker-compose.yaml"),
 		filepath.Join(generatedConfigDir, "docker-compose.yaml"),
 	)
 	return err

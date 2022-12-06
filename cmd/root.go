@@ -2,13 +2,13 @@ package cmd
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/kava-labs/kava/app"
+	"github.com/MokitaNetwork/aether/app"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "aetool",
-	Short: "Dev tools for working with the kava blockchain.",
+	Short: "Dev tools for working with the aeth blockchain.",
 }
 
 // Execute runs the root command.

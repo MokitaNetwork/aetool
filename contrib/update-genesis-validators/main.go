@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/kava-labs/kava/app"
+	"github.com/MokitaNetwork/aether/app"
 	"github.com/mokitanetwork/aetool/contrib/update-genesis-validators/cmd"
 )
 
