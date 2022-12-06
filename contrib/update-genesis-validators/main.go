@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/kava-labs/kava/app"
-	"github.com/kava-labs/kvtool/contrib/update-genesis-validators/cmd"
+	"github.com/mokitanetwork/aetool/contrib/update-genesis-validators/cmd"
 )
 
 func main() {

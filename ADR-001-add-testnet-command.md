@@ -58,7 +58,7 @@ Create go packages and/or cli tools only to generate a set of config files for d
 
 I think the value of this tool comes from assembling configurations for different services that work together.
 
-Currently there are a load of manually created files in `config_templates` which are copied and lightly edited when `kvtool testnet` runs. This works for now but in the future moving all of the data into go packages will be more scalable.
+Currently there are a load of manually created files in `config_templates` which are copied and lightly edited when `aetool testnet` runs. This works for now but in the future moving all of the data into go packages will be more scalable.
 
 ## Resources
 

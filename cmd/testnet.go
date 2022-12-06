@@ -13,7 +13,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/kava-labs/kvtool/config/generate"
+	"github.com/mokitanetwork/aetool/config/generate"
 )
 
 const (

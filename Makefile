@@ -1,2 +1,2 @@
 install:
-	go install -ldflags "-X github.com/kava-labs/kvtool/config/generate.ConfigTemplatesDir=$(CURDIR)/config/templates"
+	go install -ldflags "-X github.com/mokitanetwork/aetool/config/generate.ConfigTemplatesDir=$(CURDIR)/config/templates"

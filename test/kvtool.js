@@ -17,7 +17,7 @@ const setup = async (kavaEndpoint, binanceEndpoint, kavaMnemonic, binanceMnemoni
     bnbClient.chainId = "Binance-Chain-Tigris"
     await bnbClient.initChain()
 
-    // Override the default transaction broadcast endpoint with the tendermint RPC endpoint on the binance-chain node (port 26658 in kvtool)
+    // Override the default transaction broadcast endpoint with the tendermint RPC endpoint on the binance-chain node (port 26658 in aetool)
     bnbClient.setBroadcastDelegate(async(signedTx) => {
       const signedBz = signedTx.serialize()
       console.log(signedBz)

@@ -78,14 +78,14 @@ When not defined, it defaults to the following:
 `distribution` - the delegation distribution strategy. either `"equal"` or `"custom"` (see below).
 `base_amount` - the amount in ukava of each delegation
 
-When no `delegations` object is defined, it will use an `"equal"` distribution with a `base_amount` set to the `DEFAULT_BASE_AMOUNT` environment variable (which falls back to 1,000 KAVA if undefined).
+When no `delegations` object is defined, it will use an `"equal"` distribution with a `base_amount` set to the `DEFAULT_BASE_AMOUNT` environment variable (which falls back to 1,000 AETH if undefined).
 
-The above delegates a total of 2,000 KAVA, 1,000 KAVA to each validator.
+The above delegates a total of 2,000 AETH, 1,000 AETH to each validator.
 
 **example: Equal delegation, custom amount**
-Delegate an equal amount of KAVA to all validators with a custom amount by defining the `delegations` object with the desired `base_amount`.
+Delegate an equal amount of AETH to all validators with a custom amount by defining the `delegations` object with the desired `base_amount`.
 
-Here, we delegate 1M KAVA to all validators running on testnet:
+Here, we delegate 1M AETH to all validators running on testnet:
 ```bash
 curl -s https://api.testnet.kava.io/cosmos/staking/v1beta1/validators |
   jq '{
@@ -98,7 +98,7 @@ curl -s https://api.testnet.kava.io/cosmos/staking/v1beta1/validators |
 Another option is to change the `DEFAULT_BASE_AMOUNT` in the `.env`.
 
 **example: Equal delegation from multiple accounts**
-Each item in `delegations` defines how a different delegator accounts will delegate KAVA to the validators.
+Each item in `delegations` defines how a different delegator accounts will delegate AETH to the validators.
 
 ```json
 {
@@ -114,8 +114,8 @@ Each item in `delegations` defines how a different delegator accounts will deleg
 ```
 
 The above configuration defines two accounts with the following delegations:
-* Account 0 delegates 1M KAVA to Validator 0 & Validator 1
-* Account 1 delegates 5k KAVA to Validator 0 & Validator 1
+* Account 0 delegates 1M AETH to Validator 0 & Validator 1
+* Account 1 delegates 5k AETH to Validator 0 & Validator 1
 
 Accounts are generated from the same mnemonic with different account indexes in the HD path.
 

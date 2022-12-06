@@ -1,4 +1,4 @@
-module github.com/kava-labs/kvtool/contrib/issue-stake-liquify
+module github.com/mokitanetwork/aetool/contrib/issue-stake-liquify
 
 go 1.17
 

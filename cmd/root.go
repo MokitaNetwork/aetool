@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "kvtool",
+	Use:   "aetool",
 	Short: "Dev tools for working with the kava blockchain.",
 }
 

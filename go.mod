@@ -1,4 +1,4 @@
-module github.com/kava-labs/kvtool
+module github.com/mokitanetwork/aetool
 
 go 1.13
 

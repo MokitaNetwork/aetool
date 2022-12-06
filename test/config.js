@@ -1,9 +1,9 @@
 // Endpoints
-const KAVA_ENDPOINT_KVTOOL = "http://localhost:1317";
-const BINANCE_CHAIN_ENDPOINT_KVTOOL = "http://localhost:8080";
+const AETH_ENDPOINT_AETOOL = "http://localhost:1317";
+const BINANCE_CHAIN_ENDPOINT_AETOOL = "http://localhost:8080";
 
 // Mnemonics
-const LOADED_KAVA_MNEMONIC = "arrive guide way exit polar print kitchen hair series custom siege afraid shrug crew fashion mind script divorce pattern trust project regular robust safe";
+const LOADED_AETH_MNEMONIC = "arrive guide way exit polar print kitchen hair series custom siege afraid shrug crew fashion mind script divorce pattern trust project regular robust safe";
 const LOADED_BINANCE_CHAIN_MNEMONIC = "village fiscal december liquid better drink disorder unusual tent ivory cage diesel bike slab tilt spray wife neck oak science beef upper chapter blade";
 
 // BEP3 assets
@@ -39,9 +39,9 @@ const BEP3_ASSETS = {
 }
 
 module.exports = {
-  KAVA_ENDPOINT_KVTOOL,
-  BINANCE_CHAIN_ENDPOINT_KVTOOL,
-  LOADED_KAVA_MNEMONIC,
+  AETH_ENDPOINT_AETOOL,
+  BINANCE_CHAIN_ENDPOINT_AETOOL,
+  LOADED_AETH_MNEMONIC,
   LOADED_BINANCE_CHAIN_MNEMONIC,
   BEP3_ASSETS
 }

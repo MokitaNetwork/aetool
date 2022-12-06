@@ -1,4 +1,4 @@
-# kvtool
+# aetool
 
 Assorted dev tools for working with the kava blockchain.
 
@@ -8,7 +8,7 @@ Assorted dev tools for working with the kava blockchain.
 make install
 ```
 
-## Initialization: kvtool testnet
+## Initialization: aetool testnet
 
 Note: The current mainnet version of kava is `v0.16.0`. To start a local testnet
 with the current mainnet version use `--kava.configTemplate v0.16`. To start a
@@ -17,13 +17,13 @@ local testnet with the latest unreleased version, use
 
 Option 1:
 
-The `kvtool testnet bootstrap` command starts a local Kava blockchain as a
+The `aetool testnet bootstrap` command starts a local Kava blockchain as a
 background docker container called `generated_kavanode_1`. The bootstrap command
 only starts the Kava blockchain and Kava REST server services.
 
 ```bash
 # Start new testnet
-kvtool testnet bootstrap --kava.configTemplate master
+aetool testnet bootstrap --kava.configTemplate master
 ```
 
 Option 2:
@@ -31,17 +31,17 @@ Option 2:
 To generate a testnet for kava, binance chain, and a deputy that relays swaps between them:
 
 ```bash
-# Generate a new kvtool configuration based off template files
-kvtool testnet gen-config kava binance deputy --kava.configTemplate master
+# Generate a new aetool configuration based off template files
+aetool testnet gen-config kava binance deputy --kava.configTemplate master
 
 # Pull latest docker images. Docker must be running.
 cd ./full_configs/generated && docker-compose pull
 
 # start the testnet
-kvtool testnet up
+aetool testnet up
 
 # When finished with usage, shut down the processes
-kvtool testnet down
+aetool testnet down
 ```
 
 ### Flags
@@ -55,7 +55,7 @@ Example:
 
 ```bash
 # Run Kava testnet with an additional IBC chain
-kvtool testnet bootstrap --kava.configTemplate master --ibc
+aetool testnet bootstrap --kava.configTemplate master --ibc
 ```
 
 `--geth`: Run a go-ethereum node alongside the Kava testnet. The geth node is
@@ -68,7 +68,7 @@ Example:
 
 ```bash
 # Run the testnet with a geth node in parallel
-kvtool testnet bootstrap --kava.configTemplate master --geth
+aetool testnet bootstrap --kava.configTemplate master --geth
 ```
 
 Geth node ports are **not** default, as the Kava EVM will use default JSON-RPC
@@ -92,7 +92,7 @@ To connect to the associated Ethereum wallet with Metamask, setup a new network 
 Finally, connect the mining account by importing the JSON config in [this directory](config/templates/geth/initstate/.geth/keystore)
 with [this password](config/templates/geth/initstate/eth-password).
 
-## Usage: kvtool testnet
+## Usage: aetool testnet
 
 REST APIs for both blockchains are exposed on localhost:
 
@@ -144,10 +144,10 @@ confirm transaction before signing and broadcasting [y/N]:
 dkava q tx [tx-hash]
 ```
 
-## Shut down: kvtool testnet
+## Shut down: aetool testnet
 
-When you're done make sure to shut down the kvtool testnet. Always shut down the kvtool testnets before pulling the latest image from docker, otherwise you may experience errors.
+When you're done make sure to shut down the aetool testnet. Always shut down the aetool testnets before pulling the latest image from docker, otherwise you may experience errors.
 
 ```bash
-kvtool testnet down
+aetool testnet down
 ```

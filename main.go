@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kava-labs/kvtool/cmd"
+import "github.com/mokitanetwork/aetool/cmd"
 
 func main() {
 	cmd.Execute()

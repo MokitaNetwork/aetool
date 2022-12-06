@@ -4,7 +4,7 @@ const { sleep } = require("./helpers.js");
 const incomingSwap = async (kavaClient, bnbClient, assets, denom, amount) => {
   const assetInfo = assets[denom];
   if(!assetInfo) {
-      throw new Error(denom + " is not supported by kvtool BEP3");
+      throw new Error(denom + " is not supported by aetool BEP3");
   }
 
   // Assets involved in the swap
@@ -83,7 +83,7 @@ const incomingSwap = async (kavaClient, bnbClient, assets, denom, amount) => {
 const outgoingSwap = async(kavaClient, bnbClient, assets, denom, amount) => {
   const assetInfo = assets[denom];
   if(!assetInfo) {
-    throw new Error(denom + " is not supported by kvtool BEP3");
+    throw new Error(denom + " is not supported by aetool BEP3");
   }
 
   const sender = kavaClient.wallet.address;

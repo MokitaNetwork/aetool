@@ -1,4 +1,4 @@
-module github.com/kava-labs/kvtool/contrib/update-genesis-validators
+module github.com/mokitanetwork/aetool/contrib/update-genesis-validators
 
 go 1.18
 

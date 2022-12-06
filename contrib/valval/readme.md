@@ -3,7 +3,7 @@ This allows you to do things like start networks from nonzero height exports.
 
 The problem with nonzero height exports is that even if your validator has a controlling share of the power, it will not produce blocks until it is caught up, but it won't consider itself caught up until it can contact at least one other peer in the network.
 
-Maybe someday this is built into kvtool or better automated. For now, this is how to do it manually.
+Maybe someday this is built into aetool or better automated. For now, this is how to do it manually.
 
 # UPDATE & DISCLAIMER
 
@@ -57,7 +57,7 @@ docker-compose up
 
 ## change the kava version
 By default, this uses the `master` tag of the kava docker image.
-You can override the tag with the `KAVA_IMAGE_TAG` env variable.
+You can override the tag with the `AETH_IMAGE_TAG` env variable.
 
 To use a local version, first build & tag the kava image:
 ```
@@ -69,5 +69,5 @@ cd -
 
 Then run this with the new tag:
 ```sh
-KAVA_IMAGE_TAG=local docker-compose up
+AETH_IMAGE_TAG=local docker-compose up
 ```

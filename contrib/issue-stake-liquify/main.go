@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/kava-labs/kvtool/contrib/issue-stake-liquify/config"
+	"github.com/mokitanetwork/aetool/contrib/issue-stake-liquify/config"
 
 	"github.com/cosmos/cosmos-sdk/crypto/hd"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
@@ -239,7 +239,7 @@ func DelegateByWeightedDistribution(
 			)
 			break
 		}
-		// skip sending 0 KAVA
+		// skip sending 0 AETH
 		if distribution.Weights[i] == 0 {
 			log.Printf("delegator %d has 0 weight for validator %d, skipping\n", addressIdx, i)
 			continue
