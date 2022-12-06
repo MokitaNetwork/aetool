@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/mokitanetwork/aetool/contrib/issue-stake-liquify/config"
+	"github.com/MokitaNetwork/aetool/contrib/issue-stake-liquify/config"
 
 	"github.com/cosmos/cosmos-sdk/crypto/hd"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"

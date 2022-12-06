@@ -1,4 +1,4 @@
-module github.com/mokitanetwork/aetool/contrib/issue-stake-liquify
+module github.com/MokitaNetwork/aetool/contrib/issue-stake-liquify
 
 go 1.17
 
