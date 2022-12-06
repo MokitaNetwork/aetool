@@ -1,4 +1,4 @@
-module github.com/mokitanetwork/aetool
+module github.com/MokitaNetwork/aetool
 
 go 1.13
 
