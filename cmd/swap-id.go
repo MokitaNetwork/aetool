@@ -7,11 +7,11 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/MokitaNetwork/aether/x/bep3/types"
+	"github.com/mokitanetwork/aether/x/bep3/types"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v2"
 
-	"github.com/MokitaNetwork/aetool/binance"
+	"github.com/mokitanetwork/aetool/binance"
 )
 
 var (

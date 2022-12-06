@@ -1,11 +1,11 @@
-module github.com/MokitaNetwork/aetool/contrib/issue-stake-liquify
+module github.com/mokitanetwork/aetool/contrib/issue-stake-liquify
 
 go 1.17
 
 require (
 	github.com/cosmos/cosmos-sdk v0.45.4
 	github.com/kava-labs/go-tools v0.0.0-20221005173922-f83a05d33945
-	github.com/MokitaNetwork/aether v0.12.0-0.20221003233729-4c879bc4fbb7
+	github.com/mokitanetwork/aether v0.12.0-0.20221003233729-4c879bc4fbb7
 	github.com/tendermint/tendermint v0.34.21
 )
 

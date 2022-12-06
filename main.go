@@ -1,6 +1,6 @@
 package main
 
-import "github.com/MokitaNetwork/aetool/cmd"
+import "github.com/mokitanetwork/aetool/cmd"
 
 func main() {
 	cmd.Execute()

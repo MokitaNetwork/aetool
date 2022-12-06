@@ -424,10 +424,10 @@ github.com/jwilder/encoding v0.0.0-20170811194829-b4e1701a28ef/go.mod h1:Ct9fl0F
 github.com/karalabe/usb v0.0.2/go.mod h1:Od972xHfMJowv7NGVDiWVxk2zxnWgjLlJzE+F4F7AGU=
 github.com/kava-labs/cosmos-sdk v0.45.9-aeth.1 h1:1oaPsDNuLT+0tZtoN0SkJg1LngNnm6KMYwgETGKt2Mo=
 github.com/kava-labs/cosmos-sdk v0.45.9-aeth.1/go.mod h1:Z5M4TX7PsHNHlF/1XanI2DIpORQ+Q/st7oaeufEjnvU=
-github.com/MokitaNetwork/aether v0.12.0 h1:PJOTqUiQLEuaWerYYXuW8w4ArAYI/lkjOt4lFFGGamc=
-github.com/MokitaNetwork/aether v0.12.0/go.mod h1:nPhKqTO02uSwjzY66iPNQt2IIEyfNAqMrSON3ggsKy0=
-github.com/MokitaNetwork/kava-bridge v0.2.0 h1:5t9AsPUy9Riwi+gRLgozhv0dut/xQcvRF+yIB+wLuo8=
-github.com/MokitaNetwork/kava-bridge v0.2.0/go.mod h1:APqFV9V/rmkm3MnJ27R/CGOjteCX+3mVuRTYE70v7Yw=
+github.com/mokitanetwork/aether v0.12.0 h1:PJOTqUiQLEuaWerYYXuW8w4ArAYI/lkjOt4lFFGGamc=
+github.com/mokitanetwork/aether v0.12.0/go.mod h1:nPhKqTO02uSwjzY66iPNQt2IIEyfNAqMrSON3ggsKy0=
+github.com/mokitanetwork/kava-bridge v0.2.0 h1:5t9AsPUy9Riwi+gRLgozhv0dut/xQcvRF+yIB+wLuo8=
+github.com/mokitanetwork/kava-bridge v0.2.0/go.mod h1:APqFV9V/rmkm3MnJ27R/CGOjteCX+3mVuRTYE70v7Yw=
 github.com/kava-labs/tm-db v0.6.7-aeth.1 h1:7cVYlvWx1yP+gGdaAWcfm6NwMLzf4z6DxXguWn3+O3w=
 github.com/kava-labs/tm-db v0.6.7-aeth.1/go.mod h1:HVZfZzWXuqWseXQVplxsWXK6kLHLkk3kQB6c+nuSZvk=
 github.com/keybase/go-keychain v0.0.0-20190712205309-48d3d31d256d h1:Z+RDyXzjKE0i2sTjZ/b1uxiGtPhFy34Ou/Tk0qwN0kM=

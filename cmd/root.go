@@ -2,7 +2,7 @@ package cmd
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/MokitaNetwork/aether/app"
+	"github.com/mokitanetwork/aether/app"
 	"github.com/spf13/cobra"
 )
 

@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/MokitaNetwork/aetool/contrib/issue-stake-liquify/config"
+	"github.com/mokitanetwork/aetool/contrib/issue-stake-liquify/config"
 
 	"github.com/cosmos/cosmos-sdk/crypto/hd"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
@@ -17,10 +17,10 @@ import (
 	"github.com/kava-labs/go-tools/grpc"
 	"github.com/kava-labs/go-tools/signing"
 
-	"github.com/MokitaNetwork/aether/app"
-	earntypes "github.com/MokitaNetwork/aether/x/earn/types"
-	issuancetypes "github.com/MokitaNetwork/aether/x/issuance/types"
-	liquidtypes "github.com/MokitaNetwork/aether/x/liquid/types"
+	"github.com/mokitanetwork/aether/app"
+	earntypes "github.com/mokitanetwork/aether/x/earn/types"
+	issuancetypes "github.com/mokitanetwork/aether/x/issuance/types"
+	liquidtypes "github.com/mokitanetwork/aether/x/liquid/types"
 )
 
 const (

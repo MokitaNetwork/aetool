@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/MokitaNetwork/aether/app"
-	"github.com/MokitaNetwork/aetool/contrib/update-genesis-validators/cmd"
+	"github.com/mokitanetwork/aether/app"
+	"github.com/mokitanetwork/aetool/contrib/update-genesis-validators/cmd"
 )
 
 func main() {
