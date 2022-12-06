@@ -49,13 +49,13 @@ func main() {
 }
 
 // ProcessDelegationAllocations performs the following actions:
-// - fund each delegator account with the required amount of Kava (via dev-wallet issuing)
+// - fund each delegator account with the required amount of Aeth (via dev-wallet issuing)
 // - stake the aeth by designated weights to validators
 // - mint the baeth derivative token for all delegations
 // - deposit the liquid bonded aeth into the earn module
 func ProcessDelegationAllocations(cfg config.Config, allocations config.Allocations) error {
 	// create factory for generating account signers
-	makeSigner := SignerFactory(cfg.ChainID, cfg.KavaGrpcEndpoint)
+	makeSigner := SignerFactory(cfg.ChainID, cfg.AethGrpcEndpoint)
 
 	numAccounts := allocations.GetNumAccounts()
 

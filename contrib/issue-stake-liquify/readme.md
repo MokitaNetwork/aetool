@@ -37,7 +37,7 @@ A minimal working example input looks like the following:
 }
 ```
 
-By default, this will delegate an equal amount of Kava to each validator from one delegator account.
+By default, this will delegate an equal amount of Aeth to each validator from one delegator account.
 
 `validators` - a required list of validators to delegate to. The only key necessary is the `operator_address`, the `aethvaloper-` address of the validator.
 

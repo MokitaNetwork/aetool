@@ -1430,7 +1430,7 @@
         {
           "@type": "/aeth.committee.v1beta1.MemberCommittee",
           "base_committee": {
-            "description": "Kava Stability Committee",
+            "description": "Aeth Stability Committee",
             "id": "1",
             "members": [
               "aeth1n96qpdfcz2m7y364ewk8srv9zuq6ucwduyjaag"
@@ -1561,7 +1561,7 @@
         {
           "@type": "/aeth.committee.v1beta1.MemberCommittee",
           "base_committee": {
-            "description": "Kava Safety Committee",
+            "description": "Aeth Safety Committee",
             "id": "2",
             "members": [
               "aeth1n96qpdfcz2m7y364ewk8srv9zuq6ucwduyjaag"
@@ -1579,7 +1579,7 @@
         {
           "@type": "/aeth.committee.v1beta1.MemberCommittee",
           "base_committee": {
-            "description": "Kava God Committee (testing only)",
+            "description": "Aeth God Committee (testing only)",
             "id": "3",
             "members": [
               "aeth1n96qpdfcz2m7y364ewk8srv9zuq6ucwduyjaag"

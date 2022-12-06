@@ -1021,7 +1021,7 @@
           "@type": "/aeth.committee.v1beta1.MemberCommittee",
           "base_committee": {
             "id": "1",
-            "description": "Kava God Committee (testing only)",
+            "description": "Aeth God Committee (testing only)",
             "members": [
               "aeth1n96qpdfcz2m7y364ewk8srv9zuq6ucwduyjaag"
             ],

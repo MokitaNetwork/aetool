@@ -17,9 +17,9 @@ local testnet with the latest unreleased version, use
 
 Option 1:
 
-The `aetool testnet bootstrap` command starts a local Kava blockchain as a
+The `aetool testnet bootstrap` command starts a local Aeth blockchain as a
 background docker container called `generated_aethnode_1`. The bootstrap command
-only starts the Kava blockchain and Kava REST server services.
+only starts the Aeth blockchain and Aeth REST server services.
 
 ```bash
 # Start new testnet
@@ -49,19 +49,19 @@ aetool testnet down
 Additional flags can be added when initializing a testnet to add additional
 services:
 
-`--ibc`: Run Kava testnet with an additional IBC chain
+`--ibc`: Run Aeth testnet with an additional IBC chain
 
 Example:
 
 ```bash
-# Run Kava testnet with an additional IBC chain
+# Run Aeth testnet with an additional IBC chain
 aetool testnet bootstrap --aeth.configTemplate master --ibc
 ```
 
-`--geth`: Run a go-ethereum node alongside the Kava testnet. The geth node is
-initialized with the Kava Bridge contract and test ERC20 tokens. The Kava EVM
+`--geth`: Run a go-ethereum node alongside the Aeth testnet. The geth node is
+initialized with the Aeth Bridge contract and test ERC20 tokens. The Aeth EVM
 also includes Multicall contracts deployed. The contract addresses can be found
-on the [Kava-Labs/aeth-bridge](https://github.com/Kava-Labs/aeth-bridge#development)
+on the [kava-labs/aeth-bridge](https://github.com/kava-labs/aeth-bridge#development)
 README.
 
 Example:
@@ -71,10 +71,10 @@ Example:
 aetool testnet bootstrap --aeth.configTemplate master --geth
 ```
 
-Geth node ports are **not** default, as the Kava EVM will use default JSON-RPC
+Geth node ports are **not** default, as the Aeth EVM will use default JSON-RPC
 ports:
 
-Kava EVM RPC Ports:
+Aeth EVM RPC Ports:
 
 * HTTP JSON-RPC: `8545`
 * WS-RPC port: `8546`
@@ -96,7 +96,7 @@ with [this password](config/templates/geth/initstate/eth-password).
 
 REST APIs for both blockchains are exposed on localhost:
 
-- Kava: http://localhost:1317
+- Aeth: http://localhost:1317
 - Binance Chain: http://localhost:8080
 
 You can also interact with the blockchain using the `aeth` command line. In a

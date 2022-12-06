@@ -1,4 +1,4 @@
-const Kava = require('@kava-labs/javascript-sdk');
+const Aeth = require('@kava-labs/javascript-sdk');
 const { sleep } = require("./helpers.js");
 
 const incomingSwap = async (aethClient, bnbClient, assets, denom, amount) => {
@@ -13,7 +13,7 @@ const incomingSwap = async (aethClient, bnbClient, assets, denom, amount) => {
   // Addresses involved in the swap
   const sender = bnbClient.getClientKeyAddress();
   const recipient = assetInfo.binanceChainDeputyHotWallet; // deputy's address on Binance Chain
-  const senderOtherChain = assetInfo.aethDeputyHotWallet; // deputy's address on Kava
+  const senderOtherChain = assetInfo.aethDeputyHotWallet; // deputy's address on Aeth
   const recipientOtherChain = aethClient.wallet.address;
 
   // Format asset/amount parameters as tokens, expectedIncome
@@ -29,9 +29,9 @@ const incomingSwap = async (aethClient, bnbClient, assets, denom, amount) => {
   const heightSpan = 10001;
 
   // Generate random number hash from timestamp and hex-encoded random number
-  let randomNumber = Kava.utils.generateRandomNumber();
+  let randomNumber = Aeth.utils.generateRandomNumber();
   const timestamp = Math.floor(Date.now() / 1000);
-  const randomNumberHash = Kava.utils.calculateRandomNumberHash(
+  const randomNumberHash = Aeth.utils.calculateRandomNumberHash(
     randomNumber,
     timestamp
   );
@@ -61,19 +61,19 @@ const incomingSwap = async (aethClient, bnbClient, assets, denom, amount) => {
     console.log('Tx error:', res);
     return;
   }
-  // Wait for deputy to see the new swap on Binance Chain and relay it to Kava
+  // Wait for deputy to see the new swap on Binance Chain and relay it to Aeth
   console.log('Waiting for deputy to witness and relay the swap...');
-  console.log('Expected Kava swap ID:', swapIDs.dest);
+  console.log('Expected Aeth swap ID:', swapIDs.dest);
 
   await sleep(45000); // 45 seconds
   await aethClient.getSwap(swapIDs.dest);
 
-  // Send claim swap tx using Kava client
+  // Send claim swap tx using Aeth client
   const txHashClaim = await aethClient.claimSwap(
     swapIDs.dest,
     randomNumber
   );
-  console.log('Claim swap tx hash (Kava): '.concat(txHashClaim));
+  console.log('Claim swap tx hash (Aeth): '.concat(txHashClaim));
 
   // Check the claim tx hash
   const txRes = await aethClient.checkTxHash(txHashClaim, 15000);
@@ -94,20 +94,20 @@ const outgoingSwap = async(aethClient, bnbClient, assets, denom, amount) => {
   // Set up params
   const asset = assetInfo.aethDenom;
 
-  const coins = Kava.utils.formatCoins(amount, asset);
+  const coins = Aeth.utils.formatCoins(amount, asset);
   const heightSpan = "250";
 
   // Generate random number hash from timestamp and hex-encoded random number
-  const randomNumber = Kava.utils.generateRandomNumber();
+  const randomNumber = Aeth.utils.generateRandomNumber();
   const timestamp = Math.floor(Date.now() / 1000);
-  const randomNumberHash = Kava.utils.calculateRandomNumberHash(
+  const randomNumberHash = Aeth.utils.calculateRandomNumberHash(
     randomNumber,
     timestamp
   );
   console.log("\nSecret random number:", randomNumber.toUpperCase());
 
   const swapIDs = calcSwapIDs(randomNumberHash, sender, senderOtherChain);
-  console.log('Expected Kava swap ID:', swapIDs.origin);
+  console.log('Expected Aeth swap ID:', swapIDs.origin);
 
   const txHash = await aethClient.createSwap(
     recipient,
@@ -119,9 +119,9 @@ const outgoingSwap = async(aethClient, bnbClient, assets, denom, amount) => {
     heightSpan
   );
 
-  console.log("\nTx hash (Create swap on Kava):", txHash);
+  console.log("\nTx hash (Create swap on Aeth):", txHash);
 
-  // Wait for deputy to see the new swap on Kava and relay it to Binance Chain
+  // Wait for deputy to see the new swap on Aeth and relay it to Binance Chain
   console.log("Waiting for deputy to witness and relay the swap...")
   console.log('Expected Binance Chain swap ID:', swapIDs.dest);
   await sleep(45000); // 45 seconds
@@ -143,14 +143,14 @@ const outgoingSwap = async(aethClient, bnbClient, assets, denom, amount) => {
 // Print swap IDs
 var calcSwapIDs = (randomNumberHash, sender, senderOtherChain) => {
   // Calculate the expected swap ID on origin chain
-  const originChainSwapID = Kava.utils.calculateSwapID(
+  const originChainSwapID = Aeth.utils.calculateSwapID(
     randomNumberHash,
     sender,
     senderOtherChain
   );
 
   // Calculate the expected swap ID on destination chain
-  const destChainSwapID = Kava.utils.calculateSwapID(
+  const destChainSwapID = Aeth.utils.calculateSwapID(
     randomNumberHash,
     senderOtherChain,
     sender

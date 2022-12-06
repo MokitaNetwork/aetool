@@ -14,7 +14,7 @@ const (
 
 type Config struct {
 	ChainID                   string `env:"CHAIN_ID"`
-	KavaGrpcEndpoint          string `env:"AETH_GRPC_ENDPOINT"`
+	AethGrpcEndpoint          string `env:"AETH_GRPC_ENDPOINT"`
 	DelegatorAccountsMnemonic string `env:"DELEGATOR_ACCOUNTS_MNEMONIC"`
 	DevWalletMnemonic         string `env:"DEV_WALLET_MNEMONIC"`
 	DefaultBaseAmount         string `env:"DEFAULT_BASE_AMOUNT" envDefault:"1_000_000_000"`

@@ -61,7 +61,7 @@ You can override the tag with the `AETH_IMAGE_TAG` env variable.
 
 To use a local version, first build & tag the aeth image:
 ```
-# wherever the Kava-Labs/aeth git repo is
+# wherever the kava-labs/aeth git repo is
 cd ~/aeth
 docker build -t aeth/aeth:local .
 cd -

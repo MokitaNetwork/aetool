@@ -92,7 +92,7 @@ available services: %s
 
 			// 2) generate a complete docker-compose config
 			if stringSlice(args).contains(aethServiceName) {
-				if err := generate.GenerateKavaConfig(aethConfigTemplate, generatedConfigDir); err != nil {
+				if err := generate.GenerateAethConfig(aethConfigTemplate, generatedConfigDir); err != nil {
 					return err
 				}
 			}
@@ -179,7 +179,7 @@ available services: %s
 			if err := os.RemoveAll(generatedConfigDir); err != nil {
 				return fmt.Errorf("could not clear old generated config: %v", err)
 			}
-			if err := generate.GenerateKavaConfig(aethConfigTemplate, generatedConfigDir); err != nil {
+			if err := generate.GenerateAethConfig(aethConfigTemplate, generatedConfigDir); err != nil {
 				return err
 			}
 			if ibcFlag {
@@ -297,9 +297,9 @@ available services: %s
 				return err
 			}
 
-			makeNewKavaImageCmd := exec.Command("docker", "commit", strings.TrimSpace(string(aethContainer)), "aeth-export-temp")
+			makeNewAethImageCmd := exec.Command("docker", "commit", strings.TrimSpace(string(aethContainer)), "aeth-export-temp")
 
-			aethImageOutput, err := makeNewKavaImageCmd.Output()
+			aethImageOutput, err := makeNewAethImageCmd.Output()
 			if err != nil {
 				return err
 			}
@@ -310,12 +310,12 @@ available services: %s
 				return err
 			}
 
-			localKavaMountPath := filepath.Join(generatedConfigDir, "aeth", "initstate", ".aeth", "config")
+			localAethMountPath := filepath.Join(generatedConfigDir, "aeth", "initstate", ".aeth", "config")
 			localIbcMountPath := filepath.Join(generatedConfigDir, "ibcchain", "initstate", ".aeth", "config")
 
 			aethExportCmd := exec.Command(
 				"docker", "run",
-				"-v", strings.TrimSpace(fmt.Sprintf("%s:/root/.aeth/config", localKavaMountPath)),
+				"-v", strings.TrimSpace(fmt.Sprintf("%s:/root/.aeth/config", localAethMountPath)),
 				"aeth-export-temp",
 				"aeth", "export")
 			aethExportJSON, err := aethExportCmd.Output()
@@ -348,8 +348,8 @@ available services: %s
 			}
 
 			// docker ps -aqf "name=containername"
-			tempKavaContainerIDCmd := exec.Command("docker", "ps", "-aqf", "ancestor=aeth-export-temp")
-			tempKavaContainer, err := tempKavaContainerIDCmd.Output()
+			tempAethContainerIDCmd := exec.Command("docker", "ps", "-aqf", "ancestor=aeth-export-temp")
+			tempAethContainer, err := tempAethContainerIDCmd.Output()
 			if err != nil {
 				return err
 			}
@@ -359,8 +359,8 @@ available services: %s
 				return err
 			}
 
-			deleteKavaContainerCmd := exec.Command("docker", "rm", strings.TrimSpace(string(tempKavaContainer)))
-			err = deleteKavaContainerCmd.Run()
+			deleteAethContainerCmd := exec.Command("docker", "rm", strings.TrimSpace(string(tempAethContainer)))
+			err = deleteAethContainerCmd.Run()
 			if err != nil {
 				return err
 			}
@@ -370,8 +370,8 @@ available services: %s
 				return err
 			}
 
-			deleteKavaImageCmd := exec.Command("docker", "rmi", strings.TrimSpace(string(aethImageOutput)))
-			err = deleteKavaImageCmd.Run()
+			deleteAethImageCmd := exec.Command("docker", "rmi", strings.TrimSpace(string(aethImageOutput)))
+			err = deleteAethImageCmd.Run()
 			if err != nil {
 				return err
 			}

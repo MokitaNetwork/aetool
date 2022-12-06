@@ -1,10 +1,10 @@
-const Kava = require('@kava-labs/javascript-sdk');
+const Aeth = require('@kava-labs/javascript-sdk');
 const BnbApiClient = require('@binance-chain/javascript-sdk');
 const { sleep } = require("./helpers.js");
 
 const setup = async (aethEndpoint, binanceEndpoint, aethMnemonic, binanceMnemonic) => {
-    // Start new Kava client
-    aethClient = new Kava.KavaClient(aethEndpoint);
+    // Start new Aeth client
+    aethClient = new Aeth.AethClient(aethEndpoint);
     aethClient.setWallet(aethMnemonic);
     aethClient.setBroadcastMode("async");
     await aethClient.initChain();
@@ -45,11 +45,11 @@ const setup = async (aethEndpoint, binanceEndpoint, aethMnemonic, binanceMnemoni
     return { aethClient: aethClient, bnbClient: bnbClient };
 }
 
-const loadKavaDeputies = async (aethClient, assets, amount) => {
+const loadAethDeputies = async (aethClient, assets, amount) => {
     var counter = 0;
     for (var denom in assets) {
         const assetInfo = assets[denom];
-        const coins = Kava.utils.formatCoins(amount * assetInfo.conversionFactor, assetInfo.aethDenom);
+        const coins = Aeth.utils.formatCoins(amount * assetInfo.conversionFactor, assetInfo.aethDenom);
         const txHash = await aethClient.transfer(assetInfo.aethDeputyHotWallet, coins);
         console.log("Load", assetInfo.aethDenom, "deputy:", txHash);
 
@@ -77,6 +77,6 @@ const loadBinanceChainDeputies = async (bnbClient, assets, amount) => {
 
 module.exports = {
     setup,
-    loadKavaDeputies,
+    loadAethDeputies,
     loadBinanceChainDeputies
 }

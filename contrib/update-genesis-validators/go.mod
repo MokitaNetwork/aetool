@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/cosmos/cosmos-sdk v0.45.9
-	github.com/MokitaNetwork/aether v0.18.2
+	github.com/MokitaNetwork/aether v0.12.0
 	github.com/spf13/cobra v1.5.0
 	github.com/tendermint/tendermint v0.34.21
 )
@@ -156,7 +156,7 @@ replace (
 	// Use rocksdb 7.1.2
 	github.com/tendermint/tm-db => github.com/kava-labs/tm-db v0.6.7-aeth.1
 	// Use ethermint fork that respects min-gas-price with NoBaseFee true and london enabled, newProto w/ height parameter
-	github.com/tharsis/ethermint => github.com/Kava-Labs/ethermint v0.14.0-kava-v18.2
+	github.com/tharsis/ethermint => github.com/kava-labs/ethermint v0.14.0-kava-v18.2
 	// Make sure that we use grpc compatible with cosmos
 	google.golang.org/grpc => google.golang.org/grpc v1.33.2
 )

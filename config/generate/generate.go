@@ -13,7 +13,7 @@ var (
 )
 
 func GenerateDefaultConfig(generatedConfigDir string) error {
-	if err := GenerateKavaConfig("v0.10", generatedConfigDir); err != nil {
+	if err := GenerateAethConfig("v0.10", generatedConfigDir); err != nil {
 		return err
 	}
 	if err := GenerateBnbConfig(generatedConfigDir); err != nil {
@@ -25,7 +25,7 @@ func GenerateDefaultConfig(generatedConfigDir string) error {
 	return nil
 }
 
-func GenerateKavaConfig(aethConfigTemplate, generatedConfigDir string) error {
+func GenerateAethConfig(aethConfigTemplate, generatedConfigDir string) error {
 	// copy templates into generated config folder
 	err := copy.Copy(filepath.Join(ConfigTemplatesDir, "aeth", aethConfigTemplate), filepath.Join(generatedConfigDir, "aeth"))
 	if err != nil {
